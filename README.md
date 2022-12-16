@@ -6,7 +6,7 @@ This sample demonstrates how to create [Amazon CloudFront](https://aws.amazon.co
 <img alt="Architecture" src="./images/architecture.png" />
 
 1. The admin user will invoke the rotate keys [AWS Lambda](https://aws.amazon.com/lambda/) when required.
-2. The rotate keys AWS Lambda will use the current symmetric key from [AWS Key Management Service](https://aws.amazon.com/kms/) to call generateDataKeyPair which will be converted to PEM format
+2. The rotate keys AWS Lambda will use the current [symmetric key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#symmetric-cmks) from [AWS Key Management Service](https://aws.amazon.com/kms/) to call [GenerateDataKeyPair](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyPair.html) which will be converted to PEM format
 3. The generated private key PEM is stored in [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) to be used later when signing URLs
 4. The generated public key PEM is stored as a CloudFront Public key. The CloudFront Key Group is also updated with the new Public key.
 5. The admin user will invoke the sign url AWS Lambda to generate a [CloudFront signed url](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html) for each file required by the end user.
@@ -26,8 +26,8 @@ This sample demonstrates how to create [Amazon CloudFront](https://aws.amazon.co
 3. From the <b>root</b> folder for this project run `cdk deploy` to deploy
 
 ## Running
-1. Once deployed two outputs (RotateKeysLambdaInvokeCommand and SignUrlLambdaInvokeCommand) are created which are the cli commands to rotate the keys and to sign a url 
-2. The deployment will perform the initial key rotation by invoking RotateKeysLambdaInvokeCommand
+1. Once deployed the CloudFormation stack will create two outputs RotateKeysLambdaInvokeCommand and SignUrlLambdaInvokeCommand. These outputs are the cli commands to rotate the keys and to sign a url.
+2. The CloudFormation deployment will perform the initial key rotation by invoking RotateKeysLambdaInvokeCommand.
 3. To test the creation of a signed url please copy the SignUrlLambdaInvokeCommand cli command into your console and run. This command will produce an output with a signed url. Copy the signed url into your browser of choice to view the 'Hello World' example page via a signed url. 
 4. The second output RotateKeysLambdaInvokeCommand can run via your console to invoke the key rotation lambda.
 

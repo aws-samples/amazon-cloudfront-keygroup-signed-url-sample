@@ -1,4 +1,4 @@
-# AWS CDK For Discourse
+# Amazon CloudFront Key Group Singed URL Sample
 
 This sample demonstrates how to create [Amazon CloudFront](https://aws.amazon.com/cloudfront/) signed urls using [CloudFront Key Groups](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-keygroup.html) and [CloudFront Public Keys]((https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-publickey.html)).
 

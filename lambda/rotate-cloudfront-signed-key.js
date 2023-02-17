@@ -3,16 +3,17 @@
 
 const AWS = require("aws-sdk");
 const Crypto = require('crypto');
+const cloudfront = new AWS.CloudFront();
+const kms = new AWS.KMS();
 
 exports.handler = async (event, context) => {
     let pem = {};
     let oldPublicKeyId = '';
     let newPublicKeyId = '';
-    let cloudfront = new AWS.CloudFront();
 
     return new Promise((resolve, reject) => {
         console.log("Creating new public and private key pair based on Symmetric Key " + process.env.SymmetricKeyArn);
-        new AWS.KMS().generateDataKeyPair({
+        kms.generateDataKeyPair({
             KeyId: process.env.SymmetricKeyArn, // The key ID of the symmetric encryption KMS key that encrypts the private RSA key in the data key pair.
             KeyPairSpec: "RSA_2048" // The requested key spec of the RSA data key pair.
         }, function (err, data) {

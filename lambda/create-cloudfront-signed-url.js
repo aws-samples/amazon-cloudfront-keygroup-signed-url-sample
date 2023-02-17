@@ -2,11 +2,13 @@
 // SPDX-License-Identifier: MIT-0
 
 const AWS = require('aws-sdk');
+const cloudfront = new AWS.CloudFront();
+const secretsmanager = new AWS.SecretsManager();
 
 exports.handler = async (event, context) => {
-    let cloudfront = new AWS.CloudFront();
+
     return new Promise((resolve, reject) => {
-        new AWS.SecretsManager().getSecretValue({
+        secretsmanager.getSecretValue({
             SecretId: process.env.PrivateSecretArn
         }, function(err, data) {
             if (err) {
@@ -18,7 +20,7 @@ exports.handler = async (event, context) => {
         });
     }).then((result) => {
         return new Promise((resolve, reject) => {
-            var params = {
+            const params = {
                 Id: process.env.KeyGroupID
             };
             return cloudfront.getKeyGroup(params, function(err, data) {

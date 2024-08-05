@@ -6,4 +6,4 @@ import * as cdk from 'aws-cdk-lib';
 import { AmazonCloudfrontKeygroupSignedUrlStack } from '../lib/amazon-cloudfront-keygroup-signed-url-stack';
 
 const app = new cdk.App();
-new AmazonCloudfrontKeygroupSignedUrlStack(app, 'AmazonCloudFrontKeyGroupSignedUrlStack', {});
+new AmazonCloudfrontKeygroupSignedUrlStack(app, 'AmazonCloudFrontKeyGroupSignedUrlStack-scwarwi', {});

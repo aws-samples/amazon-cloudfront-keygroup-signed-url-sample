@@ -57,7 +57,7 @@ export class AmazonCloudfrontKeygroupSignedUrlStack extends cdk.Stack {
       handler: 'index.handler',
       logRetention: RetentionDays.THREE_DAYS,
       timeout: cdk.Duration.seconds(10),
-      runtime: cdk.aws_lambda.Runtime.NODEJS_14_X,
+      runtime: cdk.aws_lambda.Runtime.NODEJS_20_X,
       environment: {
         'PrivateSecretArn': secretPrivate.secretArn,
         'KeyGroupID': keyGroup.keyGroupId,
@@ -136,7 +136,7 @@ export class AmazonCloudfrontKeygroupSignedUrlStack extends cdk.Stack {
       handler: 'index.handler',
       logRetention: RetentionDays.THREE_DAYS,
       timeout: cdk.Duration.seconds(10),
-      runtime: cdk.aws_lambda.Runtime.NODEJS_14_X,
+      runtime: cdk.aws_lambda.Runtime.NODEJS_20_X,
       environment: {
         'PrivateSecretArn': secretPrivate.secretArn,
         'KeyGroupID': keyGroup.keyGroupId
